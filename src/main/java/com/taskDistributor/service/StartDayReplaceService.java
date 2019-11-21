@@ -3,7 +3,7 @@ package com.taskDistributor.service;
 import java.util.Calendar;
 import java.util.Date;
 
-public class StartDayReplace {
+public class StartDayReplaceService {
 
     public static Date getDate(String period) {
         Date startDate = new Date();

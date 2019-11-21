@@ -3,7 +3,7 @@ package com.taskDistributor.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MessageSelectedFilter {
+public class MessageSelectedFilterService {
     static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
     public static String getMessageSelectedFilter(String assignee, Date startDate, Date endDate){
         String messageSelectedFilter = "";

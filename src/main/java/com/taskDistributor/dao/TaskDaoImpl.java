@@ -33,7 +33,6 @@ public class TaskDaoImpl implements TaskDao {
     public void save(Task task) {
         String sql = "INSERT INTO task (assignee,summary,startDate,endDate) VALUES (?,?,?,?)";
         jdbcTemplate.update(sql,task.getAssignee(),task.getSummary(),task.getStartDate(),task.getEndDate());
-
     }
 
     @Override

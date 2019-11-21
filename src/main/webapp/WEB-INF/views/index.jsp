@@ -37,7 +37,7 @@
 
     <h1>Tasks List</h1>
 
-    <form method="post" action="filterByDateAndAssignee">
+    <form method="post" action="filter">
         Start date: <input type="date" name="startDate">
         End date: <input type="date" name="endDate">
         <select name="period" itemtype="text">

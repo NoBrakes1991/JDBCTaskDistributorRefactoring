@@ -15,27 +15,31 @@ public class TaskServiceImpl implements TaskService {
     public TaskDao taskDao;
 
     @Override
-    public List<Task> findAll() {
-        return taskDao.findAll();
-    }
-
-    @Override
     public void save(Task task) {
         taskDao.save(task);
     }
 
     @Override
-    public List<Task> findByAssignee(String assignee) {
-        return taskDao.findByAssignee(assignee);
+    public List<Task> findAll() {
+        return taskDao.findAll();
     }
 
     @Override
-    public List<Task> findByStartDateAndEndDate(Date startDate, Date endDate) {
-        return taskDao.findByStartDateAndEndDate(startDate,endDate);
+    public List<Task> findByFilter(String assignee, Date startDate, Date endDate, String period) {
+        if (!period.equals("")) {
+            startDate = StartDayReplaceService.getDate(period);
+            endDate = EndDayReplaceService.getDate(period);
+        }
+
+        if (startDate == null && endDate == null && !assignee.isEmpty()) {
+            return taskDao.findByAssignee(assignee);
+        } else if (startDate != null && endDate != null && !assignee.isEmpty()) {
+            return taskDao.findByAssigneeStartDateAndEndDate(assignee, startDate, endDate);
+        } else if (startDate != null && endDate != null && assignee.isEmpty()) {
+            return taskDao.findByStartDateAndEndDate(startDate, endDate);
+        } else {
+            return taskDao.findAll();
+        }
     }
 
-    @Override
-    public List<Task> findByAssigneeStartDateAndEndDate(String assignee, Date startDate, Date endDate) {
-        return taskDao.findByAssigneeStartDateAndEndDate(assignee,startDate,endDate);
-    }
 }
